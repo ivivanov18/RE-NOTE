@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import PropTypes from "prop-types";
 import { withStyles } from "@material-ui/core/styles";
 import AppBar from "@material-ui/core/AppBar";
@@ -20,8 +20,7 @@ const styles = {
   }
 };
 
-const Navbar = props => {
-  const { classes } = props;
+const Navbar = ({ classes }) => {
   return (
     <div className={classes.root}>
       <AppBar position="static">

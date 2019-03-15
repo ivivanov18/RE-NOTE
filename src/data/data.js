@@ -1,3 +1,4 @@
+// Function used to generate data
 export const getData = number => {
   let data = [];
   for (let i = 0; i < number; i++) {

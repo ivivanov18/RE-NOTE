@@ -18,6 +18,10 @@ const styles = {
   },
   pos: {
     marginBottom: 12
+  },
+  cardActions: {
+    display: "flex",
+    justifyContent: "space-between"
   }
 };
 
@@ -32,8 +36,9 @@ const Note = ({ title, description, classes }) => {
           {description}
         </Typography>
       </CardContent>
-      <CardActions>
+      <CardActions className={classes.cardActions}>
         <Button size="small">Update</Button>
+        <Button size="small">Delete</Button>
       </CardActions>
     </Card>
   );

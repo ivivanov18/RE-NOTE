@@ -1,8 +1,9 @@
 import React, { Component } from "react";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import Navbar from "./components/Navbar";
-import { getData } from "./data/data";
 import NotesList from "./components/NotesList";
+import MainRouter from "./components/MainRouter";
+import { BrowserRouter } from "react-router-dom";
 
 class App extends Component {
   render() {
@@ -10,8 +11,9 @@ class App extends Component {
       <div style={{ height: "100%", backgroundColor: "#F0F0F0" }}>
         <React.Fragment>
           <CssBaseline />
-          <Navbar />
-          <NotesList notes={getData(10)} />
+          <BrowserRouter>
+            <MainRouter />
+          </BrowserRouter>
         </React.Fragment>
       </div>
     );

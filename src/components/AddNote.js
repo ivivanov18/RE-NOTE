@@ -9,6 +9,7 @@ import CardMedia from "@material-ui/core/CardMedia";
 import Button from "@material-ui/core/Button";
 import TextField from "@material-ui/core/TextField";
 import Typography from "@material-ui/core/Typography";
+import { Consumer } from "../AppContext";
 
 const styles = {
   card: {
@@ -40,61 +41,73 @@ class AddNote extends Component {
   };
 
   render() {
-    const { classes } = this.props;
+    const { classes, navigate } = this.props;
+    const { title, description } = this.state;
     return (
-      <div
-        style={{
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center"
-        }}
-      >
-        <Card className={classes.card}>
-          <CardMedia
-            component="img"
-            className={classes.media}
-            image="/images/typewrite.jpg"
-            title="Image by Free-Photos from Pixabay"
-          />
-
-          <CardContent>
-            <Typography gutterBottom variant="h5" component="h2">
-              ADD NOTE
-            </Typography>
-            <form style={{ display: "flex", flexDirection: "column" }}>
-              <TextField
-                label="Title"
-                name="title"
-                value={this.state.title}
-                onChange={this.handleChange}
-                margin="normal"
-              />
-              <TextField
-                label="Description"
-                name="description"
-                multiline
-                rowsMax="10"
-                value={this.state.description}
-                onChange={this.handleChange}
-                margin="normal"
-                variant="outlined"
-              />
-            </form>
-          </CardContent>
-
-          <CardActions
+      <Consumer>
+        {context => (
+          <div
             style={{
               display: "flex",
               alignItems: "center",
               justifyContent: "center"
             }}
           >
-            <Button size="small" color="primary" onClick={this.handleSubmit}>
-              Create
-            </Button>
-          </CardActions>
-        </Card>
-      </div>
+            <Card className={classes.card}>
+              <CardMedia
+                component="img"
+                className={classes.media}
+                image="/images/typewrite.jpg"
+                title="Image by Free-Photos from Pixabay"
+              />
+
+              <CardContent>
+                <Typography gutterBottom variant="h5" component="h2">
+                  ADD NOTE
+                </Typography>
+                <form style={{ display: "flex", flexDirection: "column" }}>
+                  <TextField
+                    label="Title"
+                    name="title"
+                    value={this.state.title}
+                    onChange={this.handleChange}
+                    margin="normal"
+                  />
+                  <TextField
+                    label="Description"
+                    name="description"
+                    multiline
+                    rowsMax="10"
+                    value={this.state.description}
+                    onChange={this.handleChange}
+                    margin="normal"
+                    variant="outlined"
+                  />
+                </form>
+              </CardContent>
+
+              <CardActions
+                style={{
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center"
+                }}
+              >
+                <Button
+                  size="small"
+                  color="primary"
+                  onClick={() => {
+                    context.addNote({ title, description });
+                    navigate("/");
+                  }}
+                >
+                  Create
+                </Button>
+              </CardActions>
+            </Card>
+          </div>
+        )}
+      </Consumer>
     );
   }
 }

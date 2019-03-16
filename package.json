@@ -8,7 +8,8 @@
     "@reach/router": "^1.2.1",
     "enzyme-adapter-react-16": "^1.11.2",
     "react": "^16.8.4",
-    "react-dom": "^16.8.4"
+    "react-dom": "^16.8.4",
+    "uuid": "^3.3.2"
   },
   "devDependencies": {
     "enzyme": "^3.9.0",

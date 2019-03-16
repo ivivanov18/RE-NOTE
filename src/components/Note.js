@@ -6,6 +6,7 @@ import CardActions from "@material-ui/core/CardActions";
 import CardContent from "@material-ui/core/CardContent";
 import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
+import { Consumer } from "../AppContext";
 
 const styles = {
   card: {
@@ -26,23 +27,29 @@ const styles = {
   }
 };
 
-const Note = ({ title, description, classes }) => {
+const Note = ({ id, title, description, classes }) => {
   return (
-    <Card className={classes.card}>
-      <CardContent>
-        <Typography className={classes.title} variant="h5" component="h2">
-          {title}
-        </Typography>
-        <Typography className="description" component="p">
-          {description}
-        </Typography>
-      </CardContent>
-      <CardActions className={classes.cardActions}>
-        <Button size="small">View</Button>
-        <Button size="small">Update</Button>
-        <Button size="small">Delete</Button>
-      </CardActions>
-    </Card>
+    <Consumer>
+      {context => (
+        <Card className={classes.card}>
+          <CardContent>
+            <Typography className={classes.title} variant="h5" component="h2">
+              {title}
+            </Typography>
+            <Typography className="description" component="p">
+              {description}
+            </Typography>
+          </CardContent>
+          <CardActions className={classes.cardActions}>
+            <Button size="small">View</Button>
+            <Button size="small">Update</Button>
+            <Button size="small" onClick={() => context.deleteNote(id)}>
+              Delete
+            </Button>
+          </CardActions>
+        </Card>
+      )}
+    </Consumer>
   );
 };
 

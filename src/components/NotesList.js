@@ -1,5 +1,6 @@
 import React from "react";
 import Note from "./Note";
+import { getData } from "../data/data";
 
 const style = {
   display: "flex",
@@ -12,7 +13,7 @@ const style = {
 };
 const NotesList = ({ notes }) => (
   <div style={style} className="list-notes">
-    {notes.map(note => {
+    {getData(20).map(note => {
       return <Note title={note.title} description={note.description} />;
     })}
   </div>

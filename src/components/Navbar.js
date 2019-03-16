@@ -6,6 +6,7 @@ import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
 import IconButton from "@material-ui/core/IconButton";
 import Icon from "@material-ui/core/Icon";
+import { Link } from "@reach/router";
 
 const styles = {
   root: {
@@ -26,15 +27,21 @@ const Navbar = ({ classes }) => {
       <AppBar position="static">
         <Toolbar>
           <Typography variant="h6" color="inherit" className={classes.grow}>
-            RE-NOTE
+            <Link style={{ textDecoration: "none", color: "white" }} to="/">
+              RE-NOTE
+            </Link>
           </Typography>
           <IconButton
             className={classes.menuButton}
             color="inherit"
             aria-label="Add"
           >
-            {" "}
-            <Icon>add_circle</Icon>
+            <Link
+              style={{ textDecoration: "none", color: "white" }}
+              to="add-note"
+            >
+              <Icon>add_circle</Icon>
+            </Link>
           </IconButton>
         </Toolbar>
       </AppBar>

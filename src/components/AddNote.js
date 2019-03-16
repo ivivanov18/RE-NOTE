@@ -7,14 +7,16 @@ import CardActions from "@material-ui/core/CardActions";
 import CardContent from "@material-ui/core/CardContent";
 import CardMedia from "@material-ui/core/CardMedia";
 import Button from "@material-ui/core/Button";
+import TextField from "@material-ui/core/TextField";
 import Typography from "@material-ui/core/Typography";
 
 const styles = {
   card: {
-    maxWidth: 345
+    width: 500,
+    marginTop: "20px"
   },
   media: {
-    height: 140
+    height: 300
   }
 };
 
@@ -33,37 +35,66 @@ class AddNote extends Component {
     });
   };
 
-  handleSubmit = () => {};
+  handleSubmit = () => {
+    console.log(this.state);
+  };
 
   render() {
     const { classes } = this.props;
     return (
-      <Card className={classes.card}>
-        <CardActionArea>
+      <div
+        style={{
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center"
+        }}
+      >
+        <Card className={classes.card}>
           <CardMedia
+            component="img"
             className={classes.media}
-            image="/static/images/cards/contemplative-reptile.jpg"
-            title="Contemplative Reptile"
+            image="/images/typewrite.jpg"
+            title="Image by Free-Photos from Pixabay"
           />
+
           <CardContent>
             <Typography gutterBottom variant="h5" component="h2">
-              Lizard
+              ADD NOTE
             </Typography>
-            <Typography component="p">
-              Lizards are a widespread group of squamate reptiles, with over
-              6,000 species, ranging across all continents except Antarctica
-            </Typography>
+            <form style={{ display: "flex", flexDirection: "column" }}>
+              <TextField
+                label="Title"
+                name="title"
+                value={this.state.title}
+                onChange={this.handleChange}
+                margin="normal"
+              />
+              <TextField
+                label="Description"
+                name="description"
+                multiline
+                rowsMax="10"
+                value={this.state.description}
+                onChange={this.handleChange}
+                margin="normal"
+                variant="outlined"
+              />
+            </form>
           </CardContent>
-        </CardActionArea>
-        <CardActions>
-          <Button size="small" color="primary">
-            Share
-          </Button>
-          <Button size="small" color="primary">
-            Learn More
-          </Button>
-        </CardActions>
-      </Card>
+
+          <CardActions
+            style={{
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center"
+            }}
+          >
+            <Button size="small" color="primary" onClick={this.handleSubmit}>
+              Create
+            </Button>
+          </CardActions>
+        </Card>
+      </div>
     );
   }
 }

@@ -14,7 +14,8 @@ const styles = {
     marginRight: 20
   },
   title: {
-    fontSize: 14
+    fontSize: 16,
+    fontWeight: "bold"
   },
   pos: {
     marginBottom: 12
@@ -37,6 +38,7 @@ const Note = ({ title, description, classes }) => {
         </Typography>
       </CardContent>
       <CardActions className={classes.cardActions}>
+        <Button size="small">View</Button>
         <Button size="small">Update</Button>
         <Button size="small">Delete</Button>
       </CardActions>

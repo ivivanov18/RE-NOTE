@@ -20,7 +20,7 @@ const styles = {
   }
 };
 
-function ViewNote({ id, classes }) {
+function ViewNote({ id, classes, navigate }) {
   return (
     <Consumer>
       {context => {
@@ -67,7 +67,7 @@ function ViewNote({ id, classes }) {
                   size="small"
                   color="primary"
                   onClick={() => {
-                    //TODO Return
+                    navigate("/");
                   }}
                 >
                   Return

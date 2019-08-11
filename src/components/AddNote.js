@@ -26,23 +26,54 @@ class AddNote extends Component {
     super(props);
     this.state = {
       title: "",
-      description: ""
+      description: "",
+      error: {
+        title: false,
+        description: false
+      }
     };
   }
 
   handleChange = evt => {
-    this.setState({
-      [evt.target.name]: evt.target.value
+    const { name, value } = evt.target;
+    this.setState(currentState => {
+      return {
+        ...currentState,
+        [name]: value,
+        error: { ...currentState.error, [name]: false }
+      };
     });
   };
 
-  handleSubmit = () => {
-    console.log(this.state);
+  handleSubmit = context => {
+    const { navigate } = this.props;
+    const { title, description } = this.state;
+    if (title === "" || description === "") {
+      if (title === "") {
+        this.setState(currentState => {
+          return {
+            ...currentState,
+            error: { ...currentState.error, title: true }
+          };
+        });
+      }
+      if (description === "") {
+        this.setState(currentState => {
+          return {
+            ...currentState,
+            error: { ...currentState.error, description: true }
+          };
+        });
+      }
+      return;
+    }
+    context.addNote({ title, description });
+    navigate("/");
   };
 
   render() {
     const { classes, navigate } = this.props;
-    const { title, description } = this.state;
+    const { title, description, error } = this.state;
     return (
       <Consumer>
         {context => (
@@ -73,6 +104,7 @@ class AddNote extends Component {
                     onChange={this.handleChange}
                     margin="normal"
                     required
+                    error={error && error.title ? true : false}
                   />
                   <TextField
                     label="Description"
@@ -84,6 +116,7 @@ class AddNote extends Component {
                     margin="normal"
                     variant="outlined"
                     required
+                    error={error && error.description ? true : false}
                   />
                 </form>
               </CardContent>
@@ -99,8 +132,7 @@ class AddNote extends Component {
                   size="small"
                   color="primary"
                   onClick={() => {
-                    context.addNote({ title, description });
-                    navigate("/");
+                    this.handleSubmit(context);
                   }}
                 >
                   Create

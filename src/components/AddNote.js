@@ -9,6 +9,7 @@ import Button from "@material-ui/core/Button";
 import TextField from "@material-ui/core/TextField";
 import Typography from "@material-ui/core/Typography";
 import { Consumer } from "../AppContext";
+import uuidv4 from "uuid/v4";
 
 const styles = {
   card: {
@@ -45,6 +46,7 @@ class AddNote extends Component {
   };
 
   handleSubmit = context => {
+    const id = uuidv4();
     const { navigate } = this.props;
     const { title, description } = this.state;
     if (title === "" || description === "") {
@@ -66,7 +68,7 @@ class AddNote extends Component {
       }
       return;
     }
-    context.addNote({ title, description });
+    context.addNote({ title, description, id });
     navigate("/");
   };
 

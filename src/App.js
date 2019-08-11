@@ -49,9 +49,14 @@ class App extends Component {
     const notesWithoutDeleted = this.state.notes.filter(
       note => note.id !== idNoteToDelete
     );
-    this.setState({
-      notes: notesWithoutDeleted
-    });
+    this.setState(
+      {
+        notes: notesWithoutDeleted
+      },
+      () => {
+        localStorage.setItem("notes", JSON.stringify(this.state.notes));
+      }
+    );
   };
 
   updateNote = noteToUpdate => {};

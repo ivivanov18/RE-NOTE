@@ -13,14 +13,36 @@ class App extends Component {
     super(props);
 
     this.state = {
-      notes: getData(11),
+      notes: [],
       addNote: this.addNote,
       deleteNote: this.deleteNote
     };
   }
 
+  componentDidMount() {
+    const localStoreJSON = localStorage.getItem("notes");
+    if (localStoreJSON) {
+      try {
+        const notes = JSON.parse(localStoreJSON);
+        if (Array.isArray(notes)) {
+          this.setState({ notes });
+        }
+      } catch (err) {
+        console.error({ err });
+      }
+    }
+  }
+
+  // componentWillUnmount() {
+  //   localStorage(JSON.stringify(this.state.notes));
+  // }
+
   addNote = note => {
-    this.state.notes.push(note);
+    const { notes } = this.state;
+    const newNotes = [...notes, note];
+    this.setState({ notes: newNotes }, () => {
+      localStorage.setItem("notes", JSON.stringify(this.state.notes));
+    });
   };
 
   deleteNote = idNoteToDelete => {

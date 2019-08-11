@@ -43,24 +43,15 @@ function ViewNote({ id, classes }) {
 
               <CardContent>
                 <Typography gutterBottom variant="h5" component="h2">
-                  VIEW NOTE
+                  {note.title}
                 </Typography>
                 <form style={{ display: "flex", flexDirection: "column" }}>
                   <TextField
-                    label="Title"
-                    name="title"
-                    value={note.title}
-                    margin="normal"
-                    disabled
-                  />
-                  <TextField
-                    label="Description"
                     name="description"
                     multiline
                     rowsMax="10"
                     value={note.description}
                     margin="normal"
-                    variant="outlined"
                     disabled
                   />
                 </form>

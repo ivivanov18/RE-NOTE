@@ -5,6 +5,7 @@ import CssBaseline from "@material-ui/core/CssBaseline";
 import Navbar from "./components/Navbar";
 import AddNote from "./components/AddNote";
 import ViewNote from "./components/ViewNote";
+import UpdateNote from "./components/UpdateNote";
 import NotesList from "./components/NotesList";
 import { Provider } from "./AppContext";
 import { getData } from "./data/data";
@@ -73,6 +74,7 @@ class App extends Component {
               <NotesList path="/" />
               <AddNote path="add-note" />
               <ViewNote path="note/:id" />
+              <UpdateNote path="update/:id" />
             </Router>
           </Provider>
         </React.Fragment>

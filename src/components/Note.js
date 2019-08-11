@@ -48,7 +48,17 @@ const Note = ({ id, title, description, classes }) => {
             >
               <Button size="small">View</Button>
             </Link>
-            <Button size="small">Update</Button>
+            <Link
+              style={{ textDecoration: "none", color: "white" }}
+              to={`/update/${id}`}
+              state={{
+                id,
+                initialTitle: title,
+                initialDescription: description
+              }}
+            >
+              <Button size="small">Update</Button>
+            </Link>
             <Button size="small" onClick={() => context.deleteNote(id)}>
               Delete
             </Button>

@@ -72,6 +72,7 @@ class AddNote extends Component {
                     value={this.state.title}
                     onChange={this.handleChange}
                     margin="normal"
+                    required
                   />
                   <TextField
                     label="Description"
@@ -82,6 +83,7 @@ class AddNote extends Component {
                     onChange={this.handleChange}
                     margin="normal"
                     variant="outlined"
+                    required
                   />
                 </form>
               </CardContent>

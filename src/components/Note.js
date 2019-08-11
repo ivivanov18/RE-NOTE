@@ -7,6 +7,7 @@ import CardContent from "@material-ui/core/CardContent";
 import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
 import { Consumer } from "../AppContext";
+import { Link } from "@reach/router";
 
 const styles = {
   card: {
@@ -41,7 +42,12 @@ const Note = ({ id, title, description, classes }) => {
             </Typography>
           </CardContent>
           <CardActions className={classes.cardActions}>
-            <Button size="small">View</Button>
+            <Link
+              style={{ textDecoration: "none", color: "white" }}
+              to={`/note/${id}`}
+            >
+              <Button size="small">View</Button>
+            </Link>
             <Button size="small">Update</Button>
             <Button size="small" onClick={() => context.deleteNote(id)}>
               Delete

@@ -1,6 +1,5 @@
 import React from "react";
 import Note from "./Note";
-import { getData } from "../data/data";
 import { Consumer } from "../AppContext";
 
 const style = {

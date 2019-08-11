@@ -17,7 +17,8 @@ class App extends Component {
     this.state = {
       notes: [],
       addNote: this.addNote,
-      deleteNote: this.deleteNote
+      deleteNote: this.deleteNote,
+      updateNote: this.updateNote
     };
   }
 
@@ -34,10 +35,6 @@ class App extends Component {
       }
     }
   }
-
-  // componentWillUnmount() {
-  //   localStorage(JSON.stringify(this.state.notes));
-  // }
 
   addNote = note => {
     const { notes } = this.state;
@@ -61,7 +58,21 @@ class App extends Component {
     );
   };
 
-  updateNote = noteToUpdate => {};
+  updateNote = noteToUpdate => {
+    const indexNoteToUpdate = this.state.notes.findIndex(
+      elt => noteToUpdate.id === elt.id
+    );
+    const { notes } = this.state;
+    if (indexNoteToUpdate > -1) {
+      this.setState({
+        notes: [
+          ...notes.slice(0, indexNoteToUpdate),
+          noteToUpdate,
+          ...notes.slice(indexNoteToUpdate + 1)
+        ]
+      });
+    }
+  };
 
   render() {
     return (

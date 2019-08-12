@@ -118,6 +118,7 @@ class AddNote extends Component {
                     variant="outlined"
                     required
                     error={error && error.description ? true : false}
+                    rows={7}
                   />
                 </form>
               </CardContent>

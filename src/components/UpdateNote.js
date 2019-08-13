@@ -141,6 +141,16 @@ class UpdateNote extends Component {
                   >
                     Update
                   </Button>
+                  <Button
+                    size="small"
+                    color="primary"
+                    onClick={() => {
+                      context.updateSearchMode(true);
+                      this.props.navigate("/");
+                    }}
+                  >
+                    Cancel
+                  </Button>
                 </CardActions>
               </Card>
             </div>

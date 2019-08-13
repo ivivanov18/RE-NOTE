@@ -2,9 +2,13 @@ import React from "react";
 
 const AppContext = React.createContext({
   notes: [],
+  searchTerm: "",
   addNote() {},
   deleteNote() {},
-  updateNote() {}
+  updateNote() {},
+  updateSearchTerm() {},
+  searchMode: "",
+  updateSearchMode() {}
 });
 
 export const Provider = AppContext.Provider;

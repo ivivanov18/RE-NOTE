@@ -67,6 +67,7 @@ function ViewNote({ id, classes, navigate }) {
                   size="small"
                   color="primary"
                   onClick={() => {
+                    context.updateSearchMode(true);
                     navigate("/");
                   }}
                 >

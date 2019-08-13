@@ -69,6 +69,7 @@ class UpdateNote extends Component {
       return;
     }
     context.updateNote({ title, description, id: this.props.id });
+    context.updateSearchMode(true);
     navigate("/");
   };
 

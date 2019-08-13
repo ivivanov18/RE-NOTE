@@ -16,9 +16,13 @@ class App extends Component {
 
     this.state = {
       notes: [],
+      searchTerm: "",
       addNote: this.addNote,
       deleteNote: this.deleteNote,
-      updateNote: this.updateNote
+      updateNote: this.updateNote,
+      updateSearchTerm: this.updateSearchTerm,
+      searchMode: true,
+      updateSearchMode: this.updateSearchMode
     };
   }
 
@@ -35,6 +39,15 @@ class App extends Component {
       }
     }
   }
+
+  updateSearchMode = value => {
+    this.setState({ searchMode: value });
+  };
+
+  updateSearchTerm = newTerm => {
+    console.log({ newTerm });
+    this.setState({ searchTerm: newTerm });
+  };
 
   addNote = note => {
     const { notes } = this.state;
@@ -79,8 +92,8 @@ class App extends Component {
       <div style={{ height: "100%", backgroundColor: "#F0F0F0" }}>
         <React.Fragment>
           <CssBaseline />
-          <Navbar />
           <Provider value={this.state}>
+            <Navbar />
             <Router>
               <NotesList path="/" />
               <AddNote path="add-note" />

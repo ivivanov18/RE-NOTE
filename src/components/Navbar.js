@@ -6,7 +6,10 @@ import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
 import IconButton from "@material-ui/core/IconButton";
 import Icon from "@material-ui/core/Icon";
+import { Consumer } from "../AppContext";
+
 import { Link } from "@reach/router";
+import Search from "./Search";
 
 const styles = {
   root: {
@@ -21,31 +24,51 @@ const styles = {
   }
 };
 
-const Navbar = ({ classes }) => {
+const Navbar = ({ classes, onFilterNotes }) => {
   return (
-    <div className={classes.root}>
-      <AppBar position="static">
-        <Toolbar>
-          <Typography variant="h6" color="inherit" className={classes.grow}>
-            <Link style={{ textDecoration: "none", color: "white" }} to="/">
-              RE-NOTE
-            </Link>
-          </Typography>
-          <IconButton
-            className={classes.menuButton}
-            color="inherit"
-            aria-label="Add"
-          >
-            <Link
-              style={{ textDecoration: "none", color: "white" }}
-              to="add-note"
-            >
-              <Icon>add_circle</Icon>
-            </Link>
-          </IconButton>
-        </Toolbar>
-      </AppBar>
-    </div>
+    <Consumer>
+      {context => {
+        return (
+          <div className={classes.root}>
+            <AppBar position="static">
+              <Toolbar>
+                <Typography
+                  variant="h6"
+                  color="inherit"
+                  className={classes.grow}
+                >
+                  <Link
+                    style={{ textDecoration: "none", color: "white" }}
+                    to="/"
+                    onClick={() => {
+                      context.updateSearchMode(true);
+                    }}
+                  >
+                    RE-NOTE
+                  </Link>
+                </Typography>
+                <Search onFilterNotes={onFilterNotes} />
+                <IconButton
+                  className={classes.menuButton}
+                  color="inherit"
+                  aria-label="Add"
+                >
+                  <Link
+                    style={{ textDecoration: "none", color: "white" }}
+                    to="add-note"
+                    onClick={() => {
+                      context.updateSearchMode();
+                    }}
+                  >
+                    <Icon>add_circle</Icon>
+                  </Link>
+                </IconButton>
+              </Toolbar>
+            </AppBar>
+          </div>
+        );
+      }}
+    </Consumer>
   );
 };
 

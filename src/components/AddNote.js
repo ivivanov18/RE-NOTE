@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import PropTypes from "prop-types";
 import { withStyles } from "@material-ui/core/styles";
 import Card from "@material-ui/core/Card";
 import CardActions from "@material-ui/core/CardActions";
@@ -69,6 +68,7 @@ class AddNote extends Component {
       return;
     }
     context.addNote({ title, description, id });
+    context.updateSearchMode(true);
     navigate("/");
   };
 
@@ -77,72 +77,74 @@ class AddNote extends Component {
     const { error } = this.state;
     return (
       <Consumer>
-        {context => (
-          <div
-            style={{
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center"
-            }}
-          >
-            <Card className={classes.card}>
-              <CardMedia
-                component="img"
-                className={classes.media}
-                image="/images/typewrite.jpg"
-                title="Image by Free-Photos from Pixabay"
-              />
+        {context => {
+          return (
+            <div
+              style={{
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center"
+              }}
+            >
+              <Card className={classes.card}>
+                <CardMedia
+                  component="img"
+                  className={classes.media}
+                  image="/images/typewrite.jpg"
+                  title="Image by Free-Photos from Pixabay"
+                />
 
-              <CardContent>
-                <Typography gutterBottom variant="h5" component="h2">
-                  ADD NOTE
-                </Typography>
-                <form style={{ display: "flex", flexDirection: "column" }}>
-                  <TextField
-                    label="Title"
-                    name="title"
-                    value={this.state.title}
-                    onChange={this.handleChange}
-                    margin="normal"
-                    required
-                    error={error && error.title ? true : false}
-                  />
-                  <TextField
-                    label="Description"
-                    name="description"
-                    multiline
-                    rowsMax="10"
-                    value={this.state.description}
-                    onChange={this.handleChange}
-                    margin="normal"
-                    variant="outlined"
-                    required
-                    error={error && error.description ? true : false}
-                    rows={7}
-                  />
-                </form>
-              </CardContent>
+                <CardContent>
+                  <Typography gutterBottom variant="h5" component="h2">
+                    ADD NOTE
+                  </Typography>
+                  <form style={{ display: "flex", flexDirection: "column" }}>
+                    <TextField
+                      label="Title"
+                      name="title"
+                      value={this.state.title}
+                      onChange={this.handleChange}
+                      margin="normal"
+                      required
+                      error={error && error.title ? true : false}
+                    />
+                    <TextField
+                      label="Description"
+                      name="description"
+                      multiline
+                      rowsMax="10"
+                      value={this.state.description}
+                      onChange={this.handleChange}
+                      margin="normal"
+                      variant="outlined"
+                      required
+                      error={error && error.description ? true : false}
+                      rows={7}
+                    />
+                  </form>
+                </CardContent>
 
-              <CardActions
-                style={{
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center"
-                }}
-              >
-                <Button
-                  size="small"
-                  color="primary"
-                  onClick={() => {
-                    this.handleSubmit(context);
+                <CardActions
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center"
                   }}
                 >
-                  Create
-                </Button>
-              </CardActions>
-            </Card>
-          </div>
-        )}
+                  <Button
+                    size="small"
+                    color="primary"
+                    onClick={() => {
+                      this.handleSubmit(context);
+                    }}
+                  >
+                    Create
+                  </Button>
+                </CardActions>
+              </Card>
+            </div>
+          );
+        }}
       </Consumer>
     );
   }

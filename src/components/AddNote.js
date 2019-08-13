@@ -137,6 +137,7 @@ class AddNote extends Component {
                     onClick={() => {
                       this.handleSubmit(context);
                     }}
+                    style={{ color: "#009688" }}
                   >
                     Create
                   </Button>
@@ -147,6 +148,7 @@ class AddNote extends Component {
                       context.updateSearchMode(true);
                       this.props.navigate("/");
                     }}
+                    style={{ color: "#009688" }}
                   >
                     Cancel
                   </Button>

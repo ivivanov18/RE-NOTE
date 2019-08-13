@@ -30,7 +30,7 @@ const Navbar = ({ classes, onFilterNotes }) => {
       {context => {
         return (
           <div className={classes.root}>
-            <AppBar position="static">
+            <AppBar position="static" style={{ backgroundColor: "#009688" }}>
               <Toolbar>
                 <Typography
                   variant="h6"

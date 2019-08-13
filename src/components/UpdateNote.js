@@ -138,6 +138,7 @@ class UpdateNote extends Component {
                     onClick={() => {
                       this.handleSubmit(context);
                     }}
+                    style={{ color: "#009688" }}
                   >
                     Update
                   </Button>
@@ -148,6 +149,7 @@ class UpdateNote extends Component {
                       context.updateSearchMode(true);
                       this.props.navigate("/");
                     }}
+                    style={{ color: "#009688" }}
                   >
                     Cancel
                   </Button>

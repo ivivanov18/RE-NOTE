@@ -51,6 +51,7 @@ const Note = ({ id, title, description, classes }) => {
                 <Button
                   size="small"
                   onClick={() => context.updateSearchMode(false)}
+                  style={{ color: "#009688" }}
                 >
                   View
                 </Button>
@@ -67,11 +68,16 @@ const Note = ({ id, title, description, classes }) => {
                 <Button
                   size="small"
                   onClick={() => context.updateSearchMode(false)}
+                  style={{ color: "#009688" }}
                 >
                   Update
                 </Button>
               </Link>
-              <Button size="small" onClick={() => context.deleteNote(id)}>
+              <Button
+                size="small"
+                onClick={() => context.deleteNote(id)}
+                style={{ color: "#009688" }}
+              >
                 Delete
               </Button>
             </CardActions>
